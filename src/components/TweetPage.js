@@ -6,12 +6,12 @@ import NewTweet from "./NewTweet";
 class TweetPage extends Component {
   render() {
     const { id, replies } = this.props;
-    console.log("aaaaaa", this.props);
+
     return (
       <div>
         <Tweet tweetId={id} />
         <NewTweet id={id} />
-        {replies.length && <h3 className="center">Replies</h3>}
+        {replies.length > 0 && <h3 className="center">Replies</h3>}
         <ul>
           {replies.map(reply => (
             <li key={reply}>
@@ -26,7 +26,6 @@ class TweetPage extends Component {
 
 function mapStateToProps({ authedUser, tweets, users }, props) {
   const { id } = props.match.params;
-
   return {
     id,
     replies: !tweets[id]
